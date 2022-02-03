@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
     @Autowired
     public FulfilmentService fulfilmentService;
-    @PostMapping("/Order-fulfilment")
+    @PostMapping("/order-fulfilment")
     public ResponseEntity<String> updateItemStatus(@RequestHeader String itemId, @RequestHeader String status)
     {
         String message = fulfilmentService.updateStatus(itemId, status);
