@@ -99,11 +99,19 @@ public class RestService {
         ResponseEntity<String> response = restTemplate
                 .exchange(fooResourceUrl, HttpMethod.POST, request, String.class);
         return response;
-
-
+    }
+    public ResponseEntity<String> returnOrder(String itemId,String token)
+    {
+        RestTemplate restTemplate = new RestTemplate();
+        String fooResourceUrl = "http://localhost:8006/return-service?itemId="+itemId;
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(MediaType.APPLICATION_JSON);
+        header.add("token",token );
+        HttpEntity<?> order = new HttpEntity<>(header);
+        ResponseEntity<String> response = restTemplate.exchange(fooResourceUrl,HttpMethod.POST,order,String.class);
+        return response;
 
     }
-
 
 
     public String addProducts(ProductDetailsModel productDetailsModel)
