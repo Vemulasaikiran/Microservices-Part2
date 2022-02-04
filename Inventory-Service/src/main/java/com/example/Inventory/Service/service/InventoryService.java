@@ -12,10 +12,10 @@ import java.util.List;
 @Service
 public class InventoryService {
     @Autowired
-    private InventoryRepo inventoryRepo;
+    public InventoryRepo inventoryRepo;
 
     @Autowired
-    private ProductRepo productRepo;
+    public ProductRepo productRepo;
 
     public String addStock(InventoryModel inventoryModel)
     {

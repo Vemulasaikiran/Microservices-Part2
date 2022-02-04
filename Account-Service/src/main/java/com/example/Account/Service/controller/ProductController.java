@@ -1,6 +1,6 @@
 package com.example.Account.Service.controller;
 
-import com.example.Account.Service.client.RestTemplate;
+import com.example.Account.Service.client.RestService;
 import com.example.Account.Service.model.ProductDetailsModel;
 import com.example.Account.Service.model.ProductPriceModel;
 import com.example.Account.Service.model.ProductSkuModel;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProductController {
     @Autowired
-    public RestTemplate restService;
+    public RestService restService;
 
     @GetMapping("/product/get-product")
     public ProductDetailsModel[] getProduct()

@@ -13,8 +13,9 @@ import lombok.Setter;
 public class InventoryModel {
 
     private String inventoryId;
-    private String skuId;
+    private String skuCode;
     private int quantity;
+
 
 
 }

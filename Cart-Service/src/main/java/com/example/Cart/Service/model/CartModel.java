@@ -15,7 +15,7 @@ public class CartModel {
 
     private String cartId;
     private String productId;
-    private String email;
+//    private String email;
     private String skuCode;
     private int quantity;
 

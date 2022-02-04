@@ -55,15 +55,31 @@ public class AddressService {
     {
         if(tokenService.validToken(token))
         {
-            ShippingAddress sAddress = new ShippingAddress();
-            sAddress.setCustomerId(shippingAddressModel.getCustomerId());
-            sAddress.setLine_1(shippingAddressModel.getLine_1());
-            sAddress.setLine_2(shippingAddressModel.getLine_2());
-            sAddress.setPostalCode(shippingAddressModel.getPostalCode());
-            sAddress.setCity(shippingAddressModel.getCity());
-            sAddress.setState(shippingAddressModel.getState());
-            shippingRepo.save(sAddress);
-            return ResponseEntity.status(HttpStatus.CREATED).body("ShippingAddress Added Successfully. \n");
+            TokenService tokenService = new TokenService();
+            String email = tokenService.getTokenDetails(token);
+            Registration reg = registrationRepo.findByEmail(email);
+            List<ShippingAddress> sh= shippingRepo.findByCustomerId(shippingAddressModel.getCustomerId());
+            if(sh.isEmpty())
+            {
+                if(!reg.equals(null))
+                {
+                    ShippingAddress sAddress = new ShippingAddress();
+                    sAddress.setCustomerId(shippingAddressModel.getCustomerId());
+                    sAddress.setLine_1(shippingAddressModel.getLine_1());
+                    sAddress.setLine_2(shippingAddressModel.getLine_2());
+                    sAddress.setPostalCode(shippingAddressModel.getPostalCode());
+                    sAddress.setCity(shippingAddressModel.getCity());
+                    sAddress.setState(shippingAddressModel.getState());
+                    shippingRepo.save(sAddress);
+                    return ResponseEntity.status(HttpStatus.CREATED).body("ShippingAddress Added Successfully. \n");
+                }
+                return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body("Address already exist . \n");
+
+
+            }
+            else if(reg.equals(null)) {
+                return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Customer unavailable Please Add Customer ");
+            }
         }
         else if(token.isEmpty())
         {

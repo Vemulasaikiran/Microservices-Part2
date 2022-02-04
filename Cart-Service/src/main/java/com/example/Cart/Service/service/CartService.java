@@ -103,7 +103,7 @@ public class CartService {
         Registration reg = registrationRepo.findByEmail(email);
         String customerId = reg.getCustomerId();
 //        List<BillingAddress> billing = billingRepo.findByCustomerId(customerId);
-        Optional<ShippingAddress> addresses = shippingRepo.findByCustomerId(customerId);
+        Optional<ShippingAddress> addresses = shippingRepo.findByCustomerId(customerId).stream().findFirst();
         System.out.println(addresses);
 //        List<ShippingAddress> shipping = addresses.stream().collect(Collectors.toList());
 //        System.out.println(shipping);

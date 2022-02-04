@@ -1,6 +1,6 @@
 package com.example.Account.Service.controller;
 
-import com.example.Account.Service.client.RestTemplate;
+import com.example.Account.Service.client.RestService;
 import com.example.Account.Service.model.*;
 import com.example.Account.Service.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ public class AccountController {
     @Autowired
     public AccountService accountService;
     @Autowired
-    public RestTemplate restService;
+    public RestService restService;
 
     @PostMapping("/add")
     public String addVal(@Valid @RequestBody RegistrationModel registrationModel)
