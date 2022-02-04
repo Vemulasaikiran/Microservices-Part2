@@ -75,9 +75,17 @@ public class RestService {
         HttpEntity<?> order = new HttpEntity<>(header);
         ResponseEntity<String> response = restTemplate.exchange(fooResourceUrl,HttpMethod.POST,order,String.class);
         return response;
-
-
-
+    }
+    public Object getStatus(String token)
+    {
+        RestTemplate restTemplate = new RestTemplate();
+        String fooResourceUrl = "http://localhost:8004/order-status";
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(MediaType.APPLICATION_JSON);
+        header.add("token",token );
+        HttpEntity<?> order = new HttpEntity<>(header);
+        ResponseEntity<String> response = restTemplate.exchange(fooResourceUrl,HttpMethod.GET,order,String.class);
+        return response;
     }
 
 
@@ -115,6 +123,7 @@ public class RestService {
         System.out.println(response.getStatusCode());
         return response.getBody();
     }
+
     public ProductDetailsModel[] getAllProd()
     {
         org.springframework.web.client.RestTemplate restTemplate = new org.springframework.web.client.RestTemplate();

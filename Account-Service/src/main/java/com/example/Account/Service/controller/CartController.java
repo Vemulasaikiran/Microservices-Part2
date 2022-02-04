@@ -32,6 +32,11 @@ public class CartController {
     {
         return restService.placeOrder(token);
     }
+    @GetMapping("/cart/order-status")
+    public Object getStatus(@RequestHeader String token)
+    {
+        return restService.getStatus(token);
+    }
 
 
 }
