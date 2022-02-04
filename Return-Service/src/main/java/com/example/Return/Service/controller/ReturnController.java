@@ -17,7 +17,7 @@ public class ReturnController {
     @Autowired
     public TokenService tokenService;
 
-    @PostMapping("/return-service")
+    @PostMapping("/return-product")
     public ResponseEntity<String> returnItem(@RequestParam String itemId, @RequestHeader String token)
     {
 

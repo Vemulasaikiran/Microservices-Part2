@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -13,7 +14,7 @@ public class Controller {
     @Autowired
     public FulfilmentService fulfilmentService;
     @PostMapping("/order-fulfilment")
-    public ResponseEntity<String> updateItemStatus(@RequestHeader String itemId, @RequestHeader String status)
+    public ResponseEntity<String> updateItemStatus(@RequestParam String itemId, @RequestParam String status)
     {
         String message = fulfilmentService.updateStatus(itemId, status);
         if(message.contains("STATUS UPDATED"))

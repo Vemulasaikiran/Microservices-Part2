@@ -3,6 +3,8 @@ package com.example.Account.Service.client;
 import com.example.Account.Service.model.*;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 @Service
@@ -88,6 +90,19 @@ public class RestService {
         return response;
     }
 
+    public ResponseEntity<String>  fulFilments(String itemId, String status)
+    {
+        RestTemplate restTemplate = new RestTemplate();
+        String fooResourceUrl = "http://localhost:8008/order-fulfilment?itemId="+itemId+"&status="+status;
+        HttpHeaders header= new HttpHeaders();
+        HttpEntity<CartModel> request = new HttpEntity<>(header);
+        ResponseEntity<String> response = restTemplate
+                .exchange(fooResourceUrl, HttpMethod.POST, request, String.class);
+        return response;
+
+
+
+    }
 
 
 
